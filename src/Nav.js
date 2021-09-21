@@ -1,14 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
-// import App from './App.js'
+import SubNav from './SubNav.js'
 import { gsap } from 'gsap';
-function Nav(likedSubNav) {
+function Nav({likedSubNav}) {
   // saved likes functionality
   const savedLikesRef = useRef();
   const [click, setClick] = useState(false);
   // const handleClick = () => {
   //   setClick(!click);
   // }
-
 
   const navRef = useRef();
   useEffect(() => {
@@ -27,12 +26,17 @@ function Nav(likedSubNav) {
       {/* <section className="savedLikes wrapper"> */}
       <section ref={savedLikesRef} className={click ? 'savedLikes active' : 'savedLikes inactive'}>
         <h4 className="savedLikesHeading">Your Likes</h4>
-        <ul>
-          {/* new component */}
-          {/* likedSubNav.map */}
-          <li className="savedPost">
-            {/* this is where the image of the liked post would be */}
-          </li>
+        <ul className="savedLikesPosts">
+          {
+            likedSubNav.map((liked) => {
+              return (
+                <SubNav
+                image={liked.url}
+                title={liked.title}
+                />
+              )
+            })
+          }
         </ul>
       </section>
     </div>

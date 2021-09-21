@@ -35,6 +35,7 @@ function App() {
         end_date: todayParam
       }
     }).then((response) => {
+      // console.log(response.data)
       setPost(response.data);
       setIsLoading(false);
     })
@@ -42,20 +43,18 @@ function App() {
 
   const handleLike = (post, isItLiked) => {
     const newLikes = [...likedPosts];
-    // this empty array is a problem
-    let arrayWithLikesRemoved = []
     if (isItLiked === true) {
-      const indexOfPostToRemove = indexOfPostThatIsAlreadyLiked(post.url);
-      if (indexOfPostToRemove === undefined) {
-        // this is a problem
-        arrayWithLikesRemoved.push(post);
-      }
-      setLikedPosts(arrayWithLikesRemoved)
+      const filteredLikes = newLikes.filter((individualPost) => {
+        return individualPost !== post 
+      })
+      setLikedPosts(filteredLikes);
     } else {
       newLikes.push(post);
       setLikedPosts(newLikes); 
     }
   }
+  
+  // console.log("likedPosts", likedPosts)
 
   const isItLiked = (urlToCompare) => {
     let isItInLikedPosts = false; 
@@ -74,12 +73,12 @@ function App() {
         indexOfMatchedPost = index
       }
     })
+    // console.log(indexOfMatchedPost)
     return indexOfMatchedPost;
   }
   
   useEffect(() => {
     localStorage.setItem("likedPosts", JSON.stringify(likedPosts));
-    console.log(likedPosts);
   }, [likedPosts])
 
 
@@ -88,7 +87,7 @@ function App() {
         {
           isLoading ? <Loading /> : 
           <Nav 
-          likedSubNav = {likedPosts}
+          likedSubNav={likedPosts}
           />
         }
         <main>
