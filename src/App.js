@@ -53,8 +53,6 @@ function App() {
       setLikedPosts(newLikes); 
     }
   }
-  
-  // console.log("likedPosts", likedPosts)
 
   const isItLiked = (urlToCompare) => {
     let isItInLikedPosts = false; 

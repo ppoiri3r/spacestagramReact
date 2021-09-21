@@ -6,13 +6,14 @@ import { useRef, useEffect } from 'react';
 
 function Loading() {
   const pageRef = useRef();
+  const circleRef = useRef();
   useEffect(() => {
     gsap.to(pageRef.current, {opacity: 0, duration: 8})
   }, []);
 
   return (
     <div className="loader">
-      <span className="circle"></span>
+      <span ref={circleRef} className="circle"></span>
       <span className="circle"></span>
       <span className="circle"></span>
     </div>
