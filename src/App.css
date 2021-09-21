@@ -274,9 +274,14 @@ h2 {
 @media (max-width: 420px) {
   .savedLikes {
     width: 273px;
-    height: 210px;
   }
   .savedLikesHeading::after {
     width: 270px;
+  }
+}
+
+@media (max-height: 375px) {
+  .savedLikes {
+    height: 299px;
   }
 }
