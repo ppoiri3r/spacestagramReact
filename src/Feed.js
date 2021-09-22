@@ -8,7 +8,6 @@ function Feed({description, imgSrc, title, date, handleLikeFunction, completePos
   const handleClick = () => {
     setClick(!click);
     handleLikeFunction(click, completePost);
-    // console.log(click, completePost)
   }
   
   return (
@@ -17,7 +16,7 @@ function Feed({description, imgSrc, title, date, handleLikeFunction, completePos
         <img src={imgSrc} alt={title}/>
       </div>
       <div className="details">
-        <button className="heart" aria-label="Click here to like this post"><Heart isClick={click} onClick={handleClick}/></button>
+        <button className="heart"><span class="sr-only">Click here to like this post</span><Heart isClick={click} onClick={handleClick}/></button>
         <div className="postInfo">
           <h2>{title} - {date}</h2>
           <p>{description}</p>

@@ -1,19 +1,15 @@
-// import { computeHeadingLevel } from '@testing-library/react';
-// import astronaut from './assets/astronaut.png';
-// import gif from './assets/giphy.gif'
 import { gsap } from 'gsap';
 import { useRef, useEffect } from 'react';
 
 function Loading() {
   const pageRef = useRef();
-  const circleRef = useRef();
   useEffect(() => {
     gsap.to(pageRef.current, {opacity: 0, duration: 8})
   }, []);
 
   return (
     <div className="loader">
-      <span ref={circleRef} className="circle"></span>
+      <span className="circle"></span>
       <span className="circle"></span>
       <span className="circle"></span>
     </div>

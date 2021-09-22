@@ -35,7 +35,6 @@ function App() {
         end_date: todayParam
       }
     }).then((response) => {
-      // console.log(response.data)
       setPost(response.data);
       setIsLoading(false);
     })
@@ -64,21 +63,9 @@ function App() {
     return isItInLikedPosts;
   }
 
-  const indexOfPostThatIsAlreadyLiked = (urlToCompare) => {
-    let indexOfMatchedPost;
-    likedPosts.forEach((post, index) => {
-      if (post.url === urlToCompare) {
-        indexOfMatchedPost = index
-      }
-    })
-    // console.log(indexOfMatchedPost)
-    return indexOfMatchedPost;
-  }
-  
   useEffect(() => {
     localStorage.setItem("likedPosts", JSON.stringify(likedPosts));
   }, [likedPosts])
-
 
   return (
       <div className="App"> 
@@ -98,11 +85,10 @@ function App() {
                     imgSrc={image.url} 
                     title={image.title} 
                     description={image.explanation}
-                    key={image.copyright}
                     date={image.date}
                     handleLikeFunction = {() => handleLike(image, isItLiked(image.url))}
                     isItLiked = {isItLiked(image.url)}
-                    completePost = {image}
+                    completePost= {image}
                     key={index}
                     />
                   )
